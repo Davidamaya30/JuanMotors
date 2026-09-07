@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JuanMotors — Panel de ventas de vehículos</title>
+<meta name="description" content="Panel administrativo para gestión comercial de una concesionaria: inventario de vehículos, ventas y cotizaciones.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Saltar al contenido principal</a>
+<input type="checkbox" id="sidebar-toggle" class="sidebar-toggle-input" aria-hidden="true">
+<label for="sidebar-toggle" class="sidebar-backdrop" aria-hidden="true"></label>
+
+<div class="dashboard">
+
+  <aside class="sidebar" id="sidebar" aria-label="Navegación principal">
+    <div class="sidebar__brand">
+      <span class="sidebar__logo" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 16.5v-3.2a2 2 0 0 1 .3-1.1l1.9-3a2 2 0 0 1 1.7-.9h8.2a2 2 0 0 1 1.7.9l1.9 3a2 2 0 0 1 .3 1.1v3.2" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M4 16.5h16v1.8a1 1 0 0 1-1 1h-1.2a1 1 0 0 1-1-1v-.8H7.2v.8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1.8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="8" cy="13.2" r="0.9" fill="currentColor"/><circle cx="16" cy="13.2" r="0.9" fill="currentColor"/></svg>
+      </span>
+      <span class="sidebar__name">JuanMotors</span>
+    </div>
+
+    <nav class="sidebar__nav" aria-label="Secciones del panel">
+      <ul>
+        <li>
+          <a class="sidebar__link is-active" href="#resumen" aria-current="page" data-nav>
+            <svg class="sidebar__icon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="3" width="8" height="5" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="12" width="8" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="15" width="8" height="6" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg>
+            <span class="sidebar__link-text">Resumen</span>
+          </a>
+        </li>
+        <li>
+          <a class="sidebar__link" href="#inventario" data-nav>
+            <svg class="sidebar__icon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3.5 15.5v-2.8a1.8 1.8 0 0 1 .27-.95L5.4 9a1.8 1.8 0 0 1 1.53-.83h10.14A1.8 1.8 0 0 1 18.6 9l1.63 2.75a1.8 1.8 0 0 1 .27.95v2.8" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3.5 15.5h17v1.6a.9.9 0 0 1-.9.9h-1.1a.9.9 0 0 1-.9-.9v-.7H6.4v.7a.9.9 0 0 1-.9.9H4.4a.9.9 0 0 1-.9-.9v-1.6Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7.3" cy="12.9" r="0.85" fill="currentColor"/><circle cx="16.7" cy="12.9" r="0.85" fill="currentColor"/></svg>
+            <span class="sidebar__link-text">Inventario</span>
+          </a>
+        </li>
+        <li>
+          <a class="sidebar__link" href="#" data-nav>
+            <svg class="sidebar__icon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9 5h6l5 7.5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M4 12.5h16v5.5a1 1 0 0 1-1 1h-2v-2H7v2H5a1 1 0 0 1-1-1v-5.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 9h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <span class="sidebar__link-text">Ventas</span>
+          </a>
+        </li>
+        <li>
+          <a class="sidebar__link" href="#analitica" data-nav>
+            <svg class="sidebar__icon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 19V5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M4 19h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M7 16v-4M12 16V8M17 16v-7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <span class="sidebar__link-text">Analítica</span>
+          </a>
+        </li>
+        <li>
+          <a class="sidebar__link" href="#" data-nav>
+            <svg class="sidebar__icon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="17.5" cy="9" r="2.3" stroke="currentColor" stroke-width="1.6"/><path d="M15.6 14.8c2.4.3 4.4 2.1 4.4 5.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <span class="sidebar__link-text">Clientes</span>
+          </a>
+        </li>
+        <li>
+          <a class="sidebar__link" href="#" data-nav>
+            <svg class="sidebar__icon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M19.4 13.5a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H4.5a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H10a1.7 1.7 0 0 0 1-1.6V4.5a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V10a1.7 1.7 0 0 0 1.6 1h.2a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.6 1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            <span class="sidebar__link-text">Configuración</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <label for="sidebar-toggle" class="sidebar__collapse-btn" id="collapse-label" tabindex="0" role="button" aria-expanded="true" aria-controls="sidebar">
+      <svg class="sidebar__collapse-icon" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="sidebar__collapse-text">Contraer menú</span>
+    </label>
+  </aside>
+
+  <header class="header">
+    <label for="sidebar-toggle" class="header__menu-btn" id="menu-label" tabindex="0" role="button" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="sidebar">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </label>
+
+    <div class="header__title">
+      <h1>Resumen de ventas</h1>
+      <p class="header__subtitle">Domingo 6 de septiembre, actualizado hace 4 minutos</p>
+    </div>
+
+    <div class="header__actions">
+      <form class="header__search" role="search" action="#" onsubmit="return false;">
+        <label for="search" class="sr-only">Buscar vehículo o placa</label>
+        <svg class="header__search-icon" aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"/><path d="m20 20-3.6-3.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        <input type="search" id="search" name="search" placeholder="Buscar vehículo o placa…" autocomplete="off">
+      </form>
+
+      <button class="header__icon-btn" type="button" aria-label="Ver notificaciones, 3 sin leer">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9a6 6 0 1 1 12 0c0 4 1.4 5.6 2 6.4.3.4 0 1-.6 1H4.6c-.6 0-.9-.6-.6-1C4.6 14.6 6 13 6 9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9.5 19a2.5 2.5 0 0 0 5 0" stroke="currentColor" stroke-width="1.6"/></svg>
+        <span class="header__badge" aria-hidden="true">3</span>
+      </button>
+
+      <div class="header__user">
+        <span class="avatar" aria-hidden="true">JP</span>
+        <span class="header__user-info">
+          <span class="header__user-name">Juan Peña</span>
+          <span class="header__user-role">Gerente comercial</span>
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <main class="main" id="main">
+
+    <section class="stats" id="resumen" aria-label="Indicadores clave">
+      <article class="stat-card">
+        <div class="stat-card__top">
+          <span class="stat-card__label">Vehículos en stock</span>
+          <span class="stat-card__icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3.5 14.8v-2.6a1.7 1.7 0 0 1 .25-.9L5.3 8.6a1.7 1.7 0 0 1 1.45-.78h9.5a1.7 1.7 0 0 1 1.45.78l1.55 2.7a1.7 1.7 0 0 1 .25.9v2.6" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3.5 14.8h17v1.5a.85.85 0 0 1-.85.85h-1a.85.85 0 0 1-.85-.85v-.65H6.2v.65a.85.85 0 0 1-.85.85h-1a.85.85 0 0 1-.85-.85v-1.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7" cy="12.3" r="0.8" fill="currentColor"/><circle cx="17" cy="12.3" r="0.8" fill="currentColor"/></svg>
+          </span>
+        </div>
+        <p class="stat-card__value">86</p>
+        <p class="stat-card__delta stat-card__delta--up">+6 este mes</p>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-card__top">
+          <span class="stat-card__label">Vendidos este mes</span>
+          <span class="stat-card__icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="m8 12.3 2.6 2.6L16.3 9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+        <p class="stat-card__value">23</p>
+        <p class="stat-card__delta stat-card__delta--up">+4 vs. mes anterior</p>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-card__top">
+          <span class="stat-card__label">Cotizaciones pendientes</span>
+          <span class="stat-card__icon stat-card__icon--warn" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6.5 3.5h8l3 3v14a1 1 0 0 1-1 1h-10a1 1 0 0 1-1-1v-16a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 9.5h6M9 13h6M9 16.5h3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+        </div>
+        <p class="stat-card__value">12</p>
+        <p class="stat-card__delta stat-card__delta--up">−3 respecto a ayer</p>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-card__top">
+          <span class="stat-card__label">Ingresos del mes</span>
+          <span class="stat-card__icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 19V5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M4 19h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M7 16v-4M12 16V9M17 16v-6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>
+        </div>
+        <p class="stat-card__value">$1.240M</p>
+        <p class="stat-card__delta stat-card__delta--up">+8% vs. mes anterior</p>
+      </article>
+    </section>
+
+    <section class="panel panel--featured" aria-labelledby="featured-title">
+      <div class="panel__head">
+        <h2 id="featured-title">Vehículo destacado</h2>
+        <span class="badge badge--ok"><i class="badge__dot" aria-hidden="true"></i>Disponible</span>
+      </div>
+      <div class="featured__body">
+        <div class="featured__image-wrap">
+          <img class="featured__image" src="assets/bmw-m2-competition.png" alt="BMW M2 Competition en amarillo Sao Paulo, vista de tres cuartos delantero">
+        </div>
+        <div class="featured__info">
+          <h3>BMW M2 Competition 2024</h3>
+          <p class="featured__desc">Automóvil deportivo compacto de alto rendimiento, con motor de seis cilindros en línea y el comportamiento dinámico característico de BMW M.</p>
+          <ul class="featured__specs">
+            <li><span>Motor</span><strong>3.0L Twin-Turbo</strong></li>
+            <li><span>Cilindros</span><strong>6 en línea</strong></li>
+            <li><span>Potencia</span><strong>405 hp</strong></li>
+            <li><span>Torque</span><strong>550 Nm</strong></li>
+            <li><span>Tracción</span><strong>Trasera</strong></li>
+          </ul>
+          <p class="featured__price">$340M <span>Precio de lista</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panels">
+
+      <section class="panel panel--table" id="inventario" aria-labelledby="inv-title">
+        <div class="panel__head">
+          <h2 id="inv-title">Inventario de vehículos</h2>
+          <a class="panel__link" href="#">Ver todo</a>
+        </div>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de inventario de vehículos, desplazable horizontalmente">
+          <table>
+            <caption class="sr-only">Vehículos actualizados recientemente en el inventario, con su categoría, precio y estado</caption>
+            <thead>
+              <tr>
+                <th scope="col">Placa</th>
+                <th scope="col">Vehículo</th>
+                <th scope="col">Categoría</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="cell-mono">BMW-M2C</td>
+                <td>BMW M2 Competition 2024</td>
+                <td>Deportivo</td>
+                <td class="cell-mono">$340M</td>
+                <td><span class="badge badge--ok"><i class="badge__dot" aria-hidden="true"></i>Disponible</span></td>
+              </tr>
+              <tr>
+                <td class="cell-mono">FKX-482</td>
+                <td>Mazda CX-5 2023</td>
+                <td>SUV</td>
+                <td class="cell-mono">$128,5M</td>
+                <td><span class="badge badge--ok"><i class="badge__dot" aria-hidden="true"></i>Disponible</span></td>
+              </tr>
+              <tr>
+                <td class="cell-mono">GHT-901</td>
+                <td>Renault Logan 2022</td>
+                <td>Sedán</td>
+                <td class="cell-mono">$62,9M</td>
+                <td><span class="badge badge--warn"><i class="badge__dot" aria-hidden="true"></i>Reservado</span></td>
+              </tr>
+              <tr>
+                <td class="cell-mono">JKM-215</td>
+                <td>Toyota Hilux 2024</td>
+                <td>Pickup</td>
+                <td class="cell-mono">$185M</td>
+                <td><span class="badge badge--ok"><i class="badge__dot" aria-hidden="true"></i>Disponible</span></td>
+              </tr>
+              <tr>
+                <td class="cell-mono">LPQ-733</td>
+                <td>Chevrolet Onix 2023</td>
+                <td>Hatchback</td>
+                <td class="cell-mono">$58,4M</td>
+                <td><span class="badge badge--muted"><i class="badge__dot" aria-hidden="true"></i>Vendido</span></td>
+              </tr>
+              <tr>
+                <td class="cell-mono">MZR-064</td>
+                <td>Kia Sportage 2022</td>
+                <td>SUV</td>
+                <td class="cell-mono">$132M</td>
+                <td><span class="badge badge--ok"><i class="badge__dot" aria-hidden="true"></i>Disponible</span></td>
+              </tr>
+              <tr>
+                <td class="cell-mono">NBV-350</td>
+                <td>Nissan Versa 2021</td>
+                <td>Sedán</td>
+                <td class="cell-mono">$49,9M</td>
+                <td><span class="badge badge--warn"><i class="badge__dot" aria-hidden="true"></i>Reservado</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <aside class="panel panel--chart" id="analitica" aria-labelledby="chart-title">
+        <div class="panel__head">
+          <h2 id="chart-title">Ventas semanales</h2>
+        </div>
+
+        <figure class="chart" role="img" aria-label="Gráfico de barras de vehículos vendidos y cotizaciones generadas, de lunes a domingo. El viernes tuvo el mayor número de ventas y también el mayor número de cotizaciones.">
+          <div class="chart__bars" aria-hidden="true">
+            <div class="chart__group"><div class="chart__bar chart__bar--in" style="--value:31%" title="Ventas: 4"></div><div class="chart__bar chart__bar--out" style="--value:69%" title="Cotizaciones: 9"></div><span class="chart__label">Lun</span></div>
+            <div class="chart__group"><div class="chart__bar chart__bar--in" style="--value:23%" title="Ventas: 3"></div><div class="chart__bar chart__bar--out" style="--value:54%" title="Cotizaciones: 7"></div><span class="chart__label">Mar</span></div>
+            <div class="chart__group"><div class="chart__bar chart__bar--in" style="--value:46%" title="Ventas: 6"></div><div class="chart__bar chart__bar--out" style="--value:85%" title="Cotizaciones: 11"></div><span class="chart__label">Mié</span></div>
+            <div class="chart__group"><div class="chart__bar chart__bar--in" style="--value:15%" title="Ventas: 2"></div><div class="chart__bar chart__bar--out" style="--value:62%" title="Cotizaciones: 8"></div><span class="chart__label">Jue</span></div>
+            <div class="chart__group"><div class="chart__bar chart__bar--in" style="--value:54%" title="Ventas: 7"></div><div class="chart__bar chart__bar--out" style="--value:100%" title="Cotizaciones: 13"></div><span class="chart__label">Vie</span></div>
+            <div class="chart__group"><div class="chart__bar chart__bar--in" style="--value:38%" title="Ventas: 5"></div><div class="chart__bar chart__bar--out" style="--value:77%" title="Cotizaciones: 10"></div><span class="chart__label">Sáb</span></div>
+            <div class="chart__group"><div class="chart__bar chart__bar--in" style="--value:8%" title="Ventas: 1"></div><div class="chart__bar chart__bar--out" style="--value:31%" title="Cotizaciones: 4"></div><span class="chart__label">Dom</span></div>
+          </div>
+
+          <figcaption class="sr-only">
+            <table>
+              <caption>Vehículos vendidos y cotizaciones generadas por día</caption>
+              <thead><tr><th scope="col">Día</th><th scope="col">Ventas</th><th scope="col">Cotizaciones</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Lunes</th><td>4</td><td>9</td></tr>
+                <tr><th scope="row">Martes</th><td>3</td><td>7</td></tr>
+                <tr><th scope="row">Miércoles</th><td>6</td><td>11</td></tr>
+                <tr><th scope="row">Jueves</th><td>2</td><td>8</td></tr>
+                <tr><th scope="row">Viernes</th><td>7</td><td>13</td></tr>
+                <tr><th scope="row">Sábado</th><td>5</td><td>10</td></tr>
+                <tr><th scope="row">Domingo</th><td>1</td><td>4</td></tr>
+              </tbody>
+            </table>
+          </figcaption>
+        </figure>
+
+        <div class="chart__legend">
+          <span><i class="dot dot--in" aria-hidden="true"></i>Ventas</span>
+          <span><i class="dot dot--out" aria-hidden="true"></i>Cotizaciones</span>
+        </div>
+      </aside>
+
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>MotorHub es un panel interno de gestión comercial, de uso exclusivo del equipo de ventas.</p>
+    <p class="footer__meta">Versión 1.4.0, compilación de septiembre de 2026.</p>
+  </footer>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
